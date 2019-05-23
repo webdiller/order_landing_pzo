@@ -1,6 +1,10 @@
 $(document).ready(function () {
     $('#carousel1').owlCarousel({
-        pagination : true,
+        mouseDrag: false,
+        touchDrag: false,
+        animateOut: "fadeOut",
+        animateIn: "fadeIn",
+        smartSpeed: 450,
         loop      : true,
         dots      : true,
         nav       : true,
@@ -16,7 +20,7 @@ $(document).ready(function () {
         loop:true,
         margin:30,
         nav:true,
-        dots: false,
+        dots: true,
         navText   : ["<i class=\"fal fa-arrow-circle-left\"></i>","<i class=\"fal fa-arrow-circle-right\"></i>"],
         responsive:{
             0:{
@@ -34,4 +38,20 @@ $(document).ready(function () {
             }
         }
     });
+
+    var owl = $('#carousel2');
+    owl.owlCarousel();
+    // Listen to owl events:
+    owl.on('changed.owl.carousel', function(event) {
+        
+        if($('#carousel2 > div.owl-stage-outer > div > div:nth-child(7)').hasClass('active')){
+            console.log('active');
+        }
+
+    });
+    $('#showMore').on('click', function (e) { 
+        e.preventDefault();
+        $('.text_checkbox.hidden:hidden').slice(0,10).slideDown(200);
+    });
+
 });
